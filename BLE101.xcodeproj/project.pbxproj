@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC442A671C77714E0042A7DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC442A661C77714E0042A7DC /* AppDelegate.swift */; };
+		DC442A6C1C77714E0042A7DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC442A6A1C77714E0042A7DC /* Main.storyboard */; };
+		DC442A6E1C77714E0042A7DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC442A6D1C77714E0042A7DC /* Assets.xcassets */; };
+		DC442A711C77714E0042A7DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC442A6F1C77714E0042A7DC /* LaunchScreen.storyboard */; };
+		DC442A7C1C77714F0042A7DC /* BLE101Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC442A7B1C77714F0042A7DC /* BLE101Tests.swift */; };
+		DC442A871C7799CF0042A7DC /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC442A861C7799CF0042A7DC /* CentralManager.swift */; };
+		DC442A881C7799CF0042A7DC /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC442A861C7799CF0042A7DC /* CentralManager.swift */; };
+		DC46E9B31C7DF86200F8300E /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC46E9B21C7DF86200F8300E /* SceneKit.framework */; };
+		DC46E9B51C7DFCB600F8300E /* GyroSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9B41C7DFCB600F8300E /* GyroSceneViewController.swift */; };
+		DC46E9B61C7DFCB600F8300E /* GyroSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9B41C7DFCB600F8300E /* GyroSceneViewController.swift */; };
+		DC46E9B81C7E100700F8300E /* ArduinoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9B71C7E100700F8300E /* ArduinoBoard.swift */; };
+		DC46E9B91C7E100700F8300E /* ArduinoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9B71C7E100700F8300E /* ArduinoBoard.swift */; };
+		DC46E9BB1C7E192C00F8300E /* PeripheralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9BA1C7E192C00F8300E /* PeripheralTableViewController.swift */; };
+		DC46E9BC1C7E192C00F8300E /* PeripheralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46E9BA1C7E192C00F8300E /* PeripheralTableViewController.swift */; };
+		DC46E9BE1C7E1AB700F8300E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC46E9BD1C7E1AB700F8300E /* CoreBluetooth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC442A781C77714F0042A7DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC442A5B1C77714E0042A7DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC442A621C77714E0042A7DC;
+			remoteInfo = BLE101;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC442A631C77714E0042A7DC /* BLE101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE101.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC442A661C77714E0042A7DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DC442A6B1C77714E0042A7DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DC442A6D1C77714E0042A7DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC442A701C77714E0042A7DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DC442A721C77714E0042A7DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC442A771C77714F0042A7DC /* BLE101Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLE101Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC442A7B1C77714F0042A7DC /* BLE101Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE101Tests.swift; sourceTree = "<group>"; };
+		DC442A7D1C77714F0042A7DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC442A861C7799CF0042A7DC /* CentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
+		DC46E9B21C7DF86200F8300E /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		DC46E9B41C7DFCB600F8300E /* GyroSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroSceneViewController.swift; sourceTree = "<group>"; };
+		DC46E9B71C7E100700F8300E /* ArduinoBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoBoard.swift; sourceTree = "<group>"; };
+		DC46E9BA1C7E192C00F8300E /* PeripheralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewController.swift; sourceTree = "<group>"; };
+		DC46E9BD1C7E1AB700F8300E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC442A601C77714E0042A7DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC46E9BE1C7E1AB700F8300E /* CoreBluetooth.framework in Frameworks */,
+				DC46E9B31C7DF86200F8300E /* SceneKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC442A741C77714F0042A7DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC442A5A1C77714E0042A7DC = {
+			isa = PBXGroup;
+			children = (
+				DC442A651C77714E0042A7DC /* BLE101 */,
+				DC442A7A1C77714F0042A7DC /* BLE101Tests */,
+				DC442A641C77714E0042A7DC /* Products */,
+				DC46E9BD1C7E1AB700F8300E /* CoreBluetooth.framework */,
+				DC46E9B21C7DF86200F8300E /* SceneKit.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		DC442A641C77714E0042A7DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC442A631C77714E0042A7DC /* BLE101.app */,
+				DC442A771C77714F0042A7DC /* BLE101Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC442A651C77714E0042A7DC /* BLE101 */ = {
+			isa = PBXGroup;
+			children = (
+				DC442A661C77714E0042A7DC /* AppDelegate.swift */,
+				DC46E9B71C7E100700F8300E /* ArduinoBoard.swift */,
+				DC442A861C7799CF0042A7DC /* CentralManager.swift */,
+				DC46E9B41C7DFCB600F8300E /* GyroSceneViewController.swift */,
+				DC46E9BA1C7E192C00F8300E /* PeripheralTableViewController.swift */,
+				DC442A6A1C77714E0042A7DC /* Main.storyboard */,
+				DC442A6D1C77714E0042A7DC /* Assets.xcassets */,
+				DC442A6F1C77714E0042A7DC /* LaunchScreen.storyboard */,
+				DC442A721C77714E0042A7DC /* Info.plist */,
+			);
+			path = BLE101;
+			sourceTree = "<group>";
+		};
+		DC442A7A1C77714F0042A7DC /* BLE101Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DC442A7B1C77714F0042A7DC /* BLE101Tests.swift */,
+				DC442A7D1C77714F0042A7DC /* Info.plist */,
+			);
+			path = BLE101Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC442A621C77714E0042A7DC /* BLE101 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC442A801C77714F0042A7DC /* Build configuration list for PBXNativeTarget "BLE101" */;
+			buildPhases = (
+				DC442A5F1C77714E0042A7DC /* Sources */,
+				DC442A601C77714E0042A7DC /* Frameworks */,
+				DC442A611C77714E0042A7DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BLE101;
+			productName = BLE101;
+			productReference = DC442A631C77714E0042A7DC /* BLE101.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC442A761C77714F0042A7DC /* BLE101Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC442A831C77714F0042A7DC /* Build configuration list for PBXNativeTarget "BLE101Tests" */;
+			buildPhases = (
+				DC442A731C77714F0042A7DC /* Sources */,
+				DC442A741C77714F0042A7DC /* Frameworks */,
+				DC442A751C77714F0042A7DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC442A791C77714F0042A7DC /* PBXTargetDependency */,
+			);
+			name = BLE101Tests;
+			productName = BLE101Tests;
+			productReference = DC442A771C77714F0042A7DC /* BLE101Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC442A5B1C77714E0042A7DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "V8 Logic";
+				TargetAttributes = {
+					DC442A621C77714E0042A7DC = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					DC442A761C77714F0042A7DC = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = DC442A621C77714E0042A7DC;
+					};
+				};
+			};
+			buildConfigurationList = DC442A5E1C77714E0042A7DC /* Build configuration list for PBXProject "BLE101" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC442A5A1C77714E0042A7DC;
+			productRefGroup = DC442A641C77714E0042A7DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC442A621C77714E0042A7DC /* BLE101 */,
+				DC442A761C77714F0042A7DC /* BLE101Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC442A611C77714E0042A7DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC442A711C77714E0042A7DC /* LaunchScreen.storyboard in Resources */,
+				DC442A6E1C77714E0042A7DC /* Assets.xcassets in Resources */,
+				DC442A6C1C77714E0042A7DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC442A751C77714F0042A7DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC442A5F1C77714E0042A7DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC442A671C77714E0042A7DC /* AppDelegate.swift in Sources */,
+				DC46E9B51C7DFCB600F8300E /* GyroSceneViewController.swift in Sources */,
+				DC46E9BB1C7E192C00F8300E /* PeripheralTableViewController.swift in Sources */,
+				DC46E9B81C7E100700F8300E /* ArduinoBoard.swift in Sources */,
+				DC442A871C7799CF0042A7DC /* CentralManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC442A731C77714F0042A7DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC46E9B61C7DFCB600F8300E /* GyroSceneViewController.swift in Sources */,
+				DC46E9BC1C7E192C00F8300E /* PeripheralTableViewController.swift in Sources */,
+				DC442A7C1C77714F0042A7DC /* BLE101Tests.swift in Sources */,
+				DC442A881C7799CF0042A7DC /* CentralManager.swift in Sources */,
+				DC46E9B91C7E100700F8300E /* ArduinoBoard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC442A791C77714F0042A7DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC442A621C77714E0042A7DC /* BLE101 */;
+			targetProxy = DC442A781C77714F0042A7DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC442A6A1C77714E0042A7DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC442A6B1C77714E0042A7DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DC442A6F1C77714E0042A7DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC442A701C77714E0042A7DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC442A7E1C77714F0042A7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC442A7F1C77714F0042A7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC442A811C77714F0042A7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BLE101/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.BLE101;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC442A821C77714F0042A7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BLE101/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.BLE101;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DC442A841C77714F0042A7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BLE101Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.BLE101Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE101.app/BLE101";
+			};
+			name = Debug;
+		};
+		DC442A851C77714F0042A7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BLE101Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.BLE101Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE101.app/BLE101";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC442A5E1C77714E0042A7DC /* Build configuration list for PBXProject "BLE101" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC442A7E1C77714F0042A7DC /* Debug */,
+				DC442A7F1C77714F0042A7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC442A801C77714F0042A7DC /* Build configuration list for PBXNativeTarget "BLE101" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC442A811C77714F0042A7DC /* Debug */,
+				DC442A821C77714F0042A7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC442A831C77714F0042A7DC /* Build configuration list for PBXNativeTarget "BLE101Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC442A841C77714F0042A7DC /* Debug */,
+				DC442A851C77714F0042A7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC442A5B1C77714E0042A7DC /* Project object */;
+}
