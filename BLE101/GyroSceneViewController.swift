@@ -18,9 +18,6 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
     @IBOutlet weak var coordinateButton: UIBarButtonItem!
 
     var arduinoBoard: SCNNode = SCNNode()
-//    var geometryNode: SCNNode = SCNNode()
-//    var currentAngle: Float = 0.0
-
     var peripheral: CBPeripheral?
 
     // MARK: - Lifecycle
@@ -58,36 +55,10 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
         self.arduinoBoard = ArduinoBoard().board
         scene.rootNode.addChildNode(self.arduinoBoard)
 
-        // setup camera
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = SCNCamera()
-//        cameraNode.position = SCNVector3Make(10, 0, 0)
-//        if let camera = cameraNode.camera {
-//            camera.focalDistance = 2.0
-//            camera.focalSize = 2.0
-//        }
-//        scene.rootNode.addChildNode(cameraNode)
-
-        // self.geometryNode = boxNode
-        // let panRecognizer = UIPanGestureRecognizer(target: self, action: "panGesture:")
-        // self.sceneView.addGestureRecognizer(panRecognizer)
-
         self.sceneView.scene = scene
         self.sceneView.autoenablesDefaultLighting = true
         self.sceneView.allowsCameraControl = true
     }
-
-//    func panGesture(sender: UIPanGestureRecognizer) {
-//        let translation = sender.translationInView(sender.view!)
-//        var newAngle = (Float)(translation.x)*(Float)(M_PI)/180.0
-//        newAngle += self.currentAngle
-//
-//        self.geometryNode.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
-//
-//        if(sender.state == UIGestureRecognizerState.Ended) {
-//            self.currentAngle = newAngle
-//        }
-//    }
 
     // MARK: - IBAction Methods
     @IBAction func disconnectFromPeripheral(sender: AnyObject) {
@@ -117,18 +88,19 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
         let yawRads   = degressToRadians(manager.yaw)
         let rollRads  = degressToRadians(manager.roll)
         let pitchRads = degressToRadians(manager.pitch)
+
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(0.5) // BLE chars update every half second...
         self.arduinoBoard.eulerAngles = SCNVector3Make(pitchRads, yawRads, rollRads)
         SCNTransaction.commit()
     }
 
-    func degressToRadians(degress: Float) -> Float {
-        return (degress * -1) * Float(M_PI / 180)
-    }
-
     func managerDidUpdateCharacteristicsOfPeripheral(peripheral: CBPeripheral, manager: CentralManager) {
         CentralManager.sharedInstance.subscribeToGyroCharacteristics(peripheral)
     }
 
+    // MARK: - Helper Methods
+    func degressToRadians(degress: Float) -> Float {
+        return (degress * -1) * Float(M_PI / 180)
+    }
 }

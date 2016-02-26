@@ -276,13 +276,6 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         return intValue
     }
 
-//    func dataAsFloat(data: NSData?) -> Float {
-//        guard let d = data else { return 0.0 }
-//        var floatValue: Float = 0.0
-//        d.getBytes(&floatValue, length: sizeof(Float))
-//        return floatValue
-//    }
-
     func calculateMovingAverage(var buffer: [Int16], newValue: Int16) -> Float {
         buffer.shiftLeft()
         buffer[buffer.count-1] = newValue

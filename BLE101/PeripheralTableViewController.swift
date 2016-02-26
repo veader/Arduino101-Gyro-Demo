@@ -19,12 +19,6 @@ class PeripheralTableViewController: UITableViewController, CentralManagerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -34,6 +28,7 @@ class PeripheralTableViewController: UITableViewController, CentralManagerDelega
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+
         // cleanup
         stopScan()
         CentralManager.sharedInstance.delegate = nil
@@ -41,7 +36,6 @@ class PeripheralTableViewController: UITableViewController, CentralManagerDelega
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - IBAction Methods
