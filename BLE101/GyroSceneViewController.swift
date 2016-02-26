@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import SceneKit
+import Darwin
 
 class GyroSceneViewController: UIViewController, CentralManagerDelegate {
 
@@ -16,8 +17,9 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
     @IBOutlet weak var disconnectButton: UIBarButtonItem!
     @IBOutlet weak var coordinateButton: UIBarButtonItem!
 
-    var geometryNode: SCNNode = SCNNode()
-    var currentAngle: Float = 0.0
+    var arduinoBoard: SCNNode = SCNNode()
+//    var geometryNode: SCNNode = SCNNode()
+//    var currentAngle: Float = 0.0
 
     var peripheral: CBPeripheral?
 
@@ -53,8 +55,8 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
     func sceneSetup() {
         let scene = SCNScene()
 
-        let arduino = ArduinoBoard().board
-        scene.rootNode.addChildNode(arduino)
+        self.arduinoBoard = ArduinoBoard().board
+        scene.rootNode.addChildNode(self.arduinoBoard)
 
         // setup camera
 //        let cameraNode = SCNNode()
@@ -75,17 +77,17 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
         self.sceneView.allowsCameraControl = true
     }
 
-    func panGesture(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(sender.view!)
-        var newAngle = (Float)(translation.x)*(Float)(M_PI)/180.0
-        newAngle += self.currentAngle
-
-        self.geometryNode.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
-
-        if(sender.state == UIGestureRecognizerState.Ended) {
-            self.currentAngle = newAngle
-        }
-    }
+//    func panGesture(sender: UIPanGestureRecognizer) {
+//        let translation = sender.translationInView(sender.view!)
+//        var newAngle = (Float)(translation.x)*(Float)(M_PI)/180.0
+//        newAngle += self.currentAngle
+//
+//        self.geometryNode.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
+//
+//        if(sender.state == UIGestureRecognizerState.Ended) {
+//            self.currentAngle = newAngle
+//        }
+//    }
 
     // MARK: - IBAction Methods
     @IBAction func disconnectFromPeripheral(sender: AnyObject) {
@@ -109,9 +111,20 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
     }
 
     func managerDidUpdateValueOfCharacteristic(characteristic: CBCharacteristic, manager: CentralManager) {
-        // let coordString = "X: \(manager.gyroX) | Y: \(manager.gyroY) | Z: \(manager.gyroZ)"
         let coordString = "Y: \(manager.yaw) | P: \(manager.pitch) | R: \(manager.roll)"
         self.coordinateButton.title = coordString
+
+        let yawRads   = degressToRadians(manager.yaw)
+        let rollRads  = degressToRadians(manager.roll)
+        let pitchRads = degressToRadians(manager.pitch)
+        SCNTransaction.begin()
+        SCNTransaction.setAnimationDuration(0.5) // BLE chars update every half second...
+        self.arduinoBoard.eulerAngles = SCNVector3Make(pitchRads, yawRads, rollRads)
+        SCNTransaction.commit()
+    }
+
+    func degressToRadians(degress: Float) -> Float {
+        return (degress * -1) * Float(M_PI / 180)
     }
 
     func managerDidUpdateCharacteristicsOfPeripheral(peripheral: CBPeripheral, manager: CentralManager) {
