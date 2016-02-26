@@ -109,7 +109,8 @@ class GyroSceneViewController: UIViewController, CentralManagerDelegate {
     }
 
     func managerDidUpdateValueOfCharacteristic(characteristic: CBCharacteristic, manager: CentralManager) {
-        let coordString = "X: \(manager.gyroX) | Y: \(manager.gyroY) | Z: \(manager.gyroZ)"
+        // let coordString = "X: \(manager.gyroX) | Y: \(manager.gyroY) | Z: \(manager.gyroZ)"
+        let coordString = "Y: \(manager.yaw) | P: \(manager.pitch) | R: \(manager.roll)"
         self.coordinateButton.title = coordString
     }
 

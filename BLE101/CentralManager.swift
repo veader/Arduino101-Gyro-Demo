@@ -18,6 +18,15 @@ protocol CentralManagerDelegate {
     func managerDidUpdateCharacteristicsOfPeripheral(peripheral: CBPeripheral, manager: CentralManager)
 }
 
+let smoothingBufferSize = 8
+
+extension Array {
+    mutating func shiftLeft() {
+        for i in 0..<(self.count - 1) {
+            self[i] = self[i+1]
+        }
+    }
+}
 
 // MARK: - CentralManager Class
 class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -27,10 +36,21 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     let gyroXCharUUID = CBUUID(string: "FF125EA1-E5B1-4323-9913-957826EB5059")
     let gyroYCharUUID = CBUUID(string: "24676112-6E73-4159-90E1-147288DD11DD")
     let gyroZCharUUID = CBUUID(string: "593DCD1B-749B-4697-8DC3-709EED98887B")
+    let yawCharUUID   = CBUUID(string: "93071DD4-F234-4A05-AFE1-E31FEE32DE3C")
+    let pitchCharUUID = CBUUID(string: "3918E336-40EA-4279-BA4B-BEDFF4FE966A")
+    let rollCharUUID  = CBUUID(string: "B79F84F0-239E-4492-90E2-89283A45621B")
 
-    var gyroX: Int16 = 0
-    var gyroY: Int16 = 0
-    var gyroZ: Int16 = 0
+    var gyroX: Float = 0.0
+    var gyroY: Float = 0.0
+    var gyroZ: Float = 0.0
+
+    var yaw: Float = 0.0
+    var pitch: Float = 0.0
+    var roll: Float = 0.0
+
+    var gyroXBuffer: [Int16] = [Int16](count: smoothingBufferSize, repeatedValue: 0)
+    var gyroYBuffer: [Int16] = [Int16](count: smoothingBufferSize, repeatedValue: 0)
+    var gyroZBuffer: [Int16] = [Int16](count: smoothingBufferSize, repeatedValue: 0)
 
     let centralManager: CBCentralManager
     var peripherals: [CBPeripheral]
@@ -91,7 +111,10 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
     }
 
     func gyroCharUUIDS() -> [CBUUID] {
-        let uuids = [self.gyroXCharUUID, self.gyroYCharUUID, self.gyroZCharUUID]
+        // self.gyroXCharUUID, self.gyroYCharUUID, self.gyroZCharUUID,
+        let uuids = [
+                      self.yawCharUUID, self.pitchCharUUID, self.rollCharUUID,
+                    ]
         return uuids
     }
 
@@ -192,6 +215,7 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         print("peripheral:didDiscoverServices:")
 
         if let services = peripheral.services {
+            print(services);
             for service in services {
                 peripheral.discoverCharacteristics(gyroCharUUIDS(), forService: service)
             }
@@ -217,18 +241,7 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             print(err)
         } else {
             print(characteristic)
-
-            let intValue = dataAsInt16(characteristic.value)
-            switch characteristic.UUID {
-            case gyroXCharUUID:
-                self.gyroX = intValue
-            case gyroYCharUUID:
-                self.gyroY = intValue
-            case gyroZCharUUID:
-                self.gyroZ = intValue
-            default:
-                print("Unknown characteristic")
-            }
+            smoothData(characteristic.UUID, data: characteristic.value)
             self.delegate?.managerDidUpdateValueOfCharacteristic(characteristic, manager: self)
         }
     }
@@ -261,5 +274,46 @@ class CentralManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         var intValue: Int16 = 0
         d.getBytes(&intValue, length: sizeof(Int16))
         return intValue
+    }
+
+//    func dataAsFloat(data: NSData?) -> Float {
+//        guard let d = data else { return 0.0 }
+//        var floatValue: Float = 0.0
+//        d.getBytes(&floatValue, length: sizeof(Float))
+//        return floatValue
+//    }
+
+    func calculateMovingAverage(var buffer: [Int16], newValue: Int16) -> Float {
+        buffer.shiftLeft()
+        buffer[buffer.count-1] = newValue
+        let sum = buffer.reduce(0) { return $0 + $1 }
+        let avg = Float(Int(sum) / buffer.count)
+        return avg
+    }
+
+    func smoothData(uuid: CBUUID, data: NSData?) {
+        guard let d = data else { return }
+
+        let intValue = dataAsInt16(d)
+
+        switch uuid {
+        case gyroXCharUUID:
+            self.gyroX = calculateMovingAverage(self.gyroXBuffer, newValue: intValue)
+        case gyroYCharUUID:
+            self.gyroY = calculateMovingAverage(self.gyroYBuffer, newValue: intValue)
+        case gyroZCharUUID:
+            self.gyroZ = calculateMovingAverage(self.gyroZBuffer, newValue: intValue)
+        case yawCharUUID:
+            print("Yaw: \(d)")
+            self.yaw = Float(intValue / 100)
+        case pitchCharUUID:
+            print("Pitch: \(d)")
+            self.pitch = Float(intValue / 100)
+        case rollCharUUID:
+            print("Roll: \(d)")
+            self.roll = Float(intValue / 100)
+        default:
+            print("Unknown characteristic")
+        }
     }
 }
