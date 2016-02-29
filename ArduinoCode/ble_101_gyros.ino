@@ -2,6 +2,7 @@
 #include <CurieImu.h>
 #include <CurieBle.h>
 
+bool debuggingEnabled = true;
 
 // ---------------------------------------------------------------------------
 int sampleRate = 25; // Hz
@@ -20,9 +21,6 @@ float angleX, angleY, angleZ;
 float lastAngleX, lastAngleY, lastAngleZ;
 // angle storage for drift detection
 float lastAngleX_drift, lastAngleY_drift, lastAngleZ_drift;
-
-// TODO: where is this defined?
-int scaleFactor = 131; // used to convert raw values to degress/sec
 
 
 // ---------------------------------------------------------------------------
@@ -137,6 +135,9 @@ void readGyroValues() {
 double rtod(double rads) { return(rads * 180.0 / PI); }
 
 void calculateAngles() {
+  // a lot of good info found here original: https://forum.arduino.cc/index.php?topic=378779.0
+  static int scaleFactor = 131; // used to convert raw values to degress/sec
+
   unsigned long timeNow = millis();
  
   // convert raw gyro values to degrees/sec
@@ -160,10 +161,10 @@ void calculateAngles() {
   lastAngleZ_drift = (gyroZ_dps * timeDelta) + lastAngleZ_drift;
 
   // apply complementary filter to determine change in angle
-  // NOTE: alpha depends on sampling rate - TODO: how do you calculate this?
+  // NOTE: alpha depends on sampling rate
   float alpha = 0.96;
-  angleX = (alpha * gyroX) + (1.0 - alpha) * accelX;
-  angleY = (alpha * gyroY) + (1.0 - alpha) * accelY;
+  angleX = (alpha * gyroX) + ((1.0 - alpha) * accelX);
+  angleY = (alpha * gyroY) + ((1.0 - alpha) * accelY);
   angleZ = gyroZ; // accelerometer doesn't have a z-angle 
 
   // store for next poll
@@ -171,11 +172,6 @@ void calculateAngles() {
   lastAngleX = angleX; 
   lastAngleY = angleY; 
   lastAngleZ = angleZ;
-
-//  Serial.print("Angle X: ");  Serial.print(angleX);
-//  Serial.print("\tY: ");      Serial.print(angleY);
-//  Serial.print("\tZ: ");      Serial.print(angleZ);
-//  Serial.println(".");
 }
 
 void updateBLEGyroValues() {
@@ -191,15 +187,28 @@ void updateBLEGyroValues() {
   pitchChar.setValue(pitch);
   rollChar.setValue(roll);
 
-  Serial.print("BLE Update: ");
-  Serial.print("X: "); Serial.print(gx);
+  printDebuggingInfo();
+}
+
+void printDebuggingInfo() {
+  if (!debuggingEnabled) { return; }
+ 
+  // mostly for debugging purposes
+  Serial.print("[Raw Gyro] ");
+  Serial.print("X: ");   Serial.print(gx);
   Serial.print("| Y: "); Serial.print(gy);
   Serial.print("| Z: "); Serial.println(gz);
 
-  Serial.print("Orientation Update: ");
-  Serial.print("Yaw: ");   Serial.print(lastAngleZ);
-  Serial.print("| Pitch: "); Serial.print(lastAngleY);
-  Serial.print("| Roll: "); Serial.print(lastAngleX);
-  Serial.println("");
+  Serial.print("[Orientation]");
+  Serial.print("  Roll: ");  Serial.print(lastAngleX);
+  Serial.print("\tPitch: "); Serial.print(lastAngleY);
+  Serial.print("\tYaw: ");   Serial.print(lastAngleZ);
+  Serial.println(".");
+
+  Serial.print("[Drift] ");
+  Serial.print("  Roll: ");  Serial.print(lastAngleX_drift);
+  Serial.print("\tPitch: "); Serial.print(lastAngleY_drift);
+  Serial.print("\tYaw: ");   Serial.print(lastAngleZ_drift);
+  Serial.println(".");
 }
 
