@@ -1,6 +1,5 @@
-#include <BMI160.h>
-#include <CurieImu.h>
-#include <CurieBle.h>
+#include <CurieIMU.h>
+#include <CurieBLE.h>
 
 bool debuggingEnabled = true;
 
@@ -42,9 +41,11 @@ BLEIntCharacteristic rollChar("B79F84F0-239E-4492-90E2-89283A45621B",  BLERead |
 // ---------------------------------------------------------------------------
 void setup() {
   Serial.begin(9600);
+  while (!Serial); // wait for the serial port to open
+
   pinMode(ledPin, OUTPUT);
 
-  CurieImu.initialize();
+  CurieIMU.begin();
   setupIMU();
   setupBLE();
 }
@@ -82,22 +83,22 @@ void loop() {
 
 // ---------------------------------------------------------------------------
 void setupIMU() {
-//  CurieImu.setGyroRate(BMI160_GYRO_RATE_25HZ);
-//  CurieImu.setFullScaleGyroRange(BMI160_GYRO_RANGE_2000);
+//  CurieIMU.setGyroRate(BMI160_GYRO_RATE_25HZ);
+//  CurieIMU.setFullScaleGyroRange(BMI160_GYRO_RANGE_2000);
   
   Serial.print("Starting Gyroscope calibration...");
-  CurieImu.autoCalibrateGyroOffset();
+  CurieIMU.autoCalibrateGyroOffset();
   Serial.println(" Done");
   
   Serial.print("Starting Acceleration calibration...");
-  CurieImu.autoCalibrateXAccelOffset(0);
-  CurieImu.autoCalibrateYAccelOffset(0);
-  CurieImu.autoCalibrateZAccelOffset(1);
+  CurieIMU.autoCalibrateXAccelOffset(0);
+  CurieIMU.autoCalibrateYAccelOffset(0);
+  CurieIMU.autoCalibrateZAccelOffset(1);
   Serial.println(" Done");
   
   Serial.println("Enabling Gyroscope/Acceleration offset compensation");
-  CurieImu.setGyroOffsetEnabled(true);
-  CurieImu.setAccelOffsetEnabled(true);
+  CurieIMU.setGyroOffsetEnabled(true);
+  CurieIMU.setAccelOffsetEnabled(true);
 }
 
 void setupBLE() {
@@ -120,13 +121,13 @@ void setupBLE() {
 
 // ---------------------------------------------------------------------------
 void readGyroValues() {
-  ax = CurieImu.getAccelerationX();
-  ay = CurieImu.getAccelerationY();
-  az = CurieImu.getAccelerationZ();
+  ax = CurieIMU.getAccelerationX();
+  ay = CurieIMU.getAccelerationY();
+  az = CurieIMU.getAccelerationZ();
 
-  gx = CurieImu.getRotationX();
-  gy = CurieImu.getRotationY();
-  gz = CurieImu.getRotationZ();
+  gx = CurieIMU.getRotationX();
+  gy = CurieIMU.getRotationY();
+  gz = CurieIMU.getRotationZ();
 
   calculateAngles();
 }
